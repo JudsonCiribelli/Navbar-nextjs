@@ -1,5 +1,7 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 //Components
 import NavItem, { NavItemInterface } from "../NavItem/NavItem-Component";
 //Styles
@@ -9,7 +11,7 @@ export default function Navbar() {
   const Items: NavItemInterface[] = [
     {
       url: "/",
-      label: "Ínicio",
+      label: "Início",
     },
     {
       url: "/about",
@@ -30,6 +32,8 @@ export default function Navbar() {
     },
   ];
 
+  const pathName = usePathname();
+
   return (
     <header>
       <nav className="navbar">
@@ -43,7 +47,12 @@ export default function Navbar() {
         </Link>
         <ul className="nav-items">
           {Items.map((item, index) => (
-            <NavItem url={item.url} label={item.label} key={index} />
+            <NavItem
+              url={item.url}
+              label={item.label}
+              key={index}
+              isActive={pathName === item.url}
+            />
           ))}
         </ul>
         <button className="btn-default">Contatar</button>
