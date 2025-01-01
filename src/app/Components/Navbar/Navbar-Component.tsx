@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 //Components
 import NavItem, { NavItemInterface } from "../NavItem/NavItem-Component";
 //Styles
+import { FaBars, FaXmark } from "react-icons/fa6";
 import "./Navbar-Styles.css";
+import { useState } from "react";
 
 export default function Navbar() {
   const Items: NavItemInterface[] = [
@@ -33,6 +35,7 @@ export default function Navbar() {
   ];
 
   const pathName = usePathname();
+  const [openMenu, setOpenMenu] = useState<boolean>(false);
 
   return (
     <header>
@@ -45,7 +48,7 @@ export default function Navbar() {
             alt="Minha_Logo"
           />
         </Link>
-        <ul className="nav-items">
+        <ul className={`nav-items ${openMenu ? "open" : ""}`}>
           {Items.map((item, index) => (
             <NavItem
               url={item.url}
@@ -55,6 +58,9 @@ export default function Navbar() {
             />
           ))}
         </ul>
+        <button className="btn-mobile" onClick={() => setOpenMenu(!openMenu)}>
+          {openMenu ? <FaXmark size={30} /> : <FaBars size={30} />}
+        </button>
         <button className="btn-default">Contatar</button>
       </nav>
     </header>

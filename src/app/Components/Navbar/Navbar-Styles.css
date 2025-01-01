@@ -20,6 +20,16 @@ header {
       align-items: center;
       list-style: none;
       text-decoration: none;
+
+      &.open {
+        flex-direction: column;
+        position: absolute;
+        top: 110px;
+        left: 0px;
+        width: 100%;
+        background-color: black;
+        padding: 20px;
+      }
     }
     .btn-default {
       font-size: 18px;
@@ -32,6 +42,29 @@ header {
       border-radius: 20px;
       border: none;
       padding: 10px 22px;
+    }
+    .btn-mobile {
+      display: none;
+      background-color: transparent;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+    @media screen and (max-width: 768px) {
+      .btn-mobile {
+        display: block;
+      }
+      .nav-items {
+        display: none;
+        &.open {
+          display: flex;
+        }
+      }
+
+      .btn-default {
+        display: none;
+      }
     }
   }
 }
